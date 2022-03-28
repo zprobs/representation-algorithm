@@ -38,6 +38,19 @@ class TestRepresentation(unittest.TestCase):
 
         self.assertEqual(build_representation(normal, 'large'), extensive.write())
 
+    def test_four_by_four(self):
+        filename = os.path.join(os.path.dirname(__file__), 'four-by-four.efg')
+        extensive = pygambit.Game.read_game(filename)
+
+        normal = np.array([
+            [(1, 1), (2, 2), (4, 4), (6, 6)],
+            [(1, 1), (2, 2), (5, 5), (6, 6)],
+            [(3, 3), (3, 3), (4, 4), (6, 6)],
+            [(3, 3), (3, 3), (5, 5), (6, 6)]
+        ])
+
+        self.assertEqual(build_representation(normal, 'four-by-four'), extensive.write())
+
     def test_three_players(self):
         filename = os.path.join(os.path.dirname(__file__), 'three-player.efg')
         extensive = pygambit.Game.read_game(filename)
